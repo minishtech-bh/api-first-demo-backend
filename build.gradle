@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.openapi.generator' version '7.4.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.21'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+}
+
+openApiGenerate {
+    generatorName = 'spring'
+    inputSpec = "${rootDir}/../open-api/openapi.yaml"
+    outputDir = "${layout.buildDirectory.get()}/generated"
+    apiPackage = 'com.example.todo.api'
+    modelPackage = 'com.example.todo.model'
+    configOptions = [
+        interfaceOnly          : 'true',
+        useSpringBoot3         : 'true',
+        useJakartaEe           : 'true',
+        skipDefaultInterface   : 'true',
+        useTags                : 'true',
+        openApiNullable        : 'false',
+    ]
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir "${layout.buildDirectory.get()}/generated/src/main/java"
+        }
+    }
+}
+
+compileJava.dependsOn tasks.openApiGenerate
