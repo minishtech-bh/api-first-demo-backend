@@ -27,7 +27,7 @@ dependencies {
 
 openApiGenerate {
     generatorName = 'spring'
-    inputSpec = "${rootDir}/../open-api/openapi.yaml"
+    inputSpec = "${rootDir}/open-api/openapi.yaml"
     outputDir = "${layout.buildDirectory.get()}/generated"
     apiPackage = 'com.example.todo.api'
     modelPackage = 'com.example.todo.model'
