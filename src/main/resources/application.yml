@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    # 우측 상단 드롭다운: audience 별 스펙 전환
+    urls:
+      - name: App (B2C)
+        url: /TodoDemo.PointManagement.App.yaml
+      - name: Admin — 제휴사 (Partner)
+        url: /TodoDemo.PointManagement.Admin.Partner.yaml
+      - name: Admin — 플랫폼 (Platform)
+        url: /TodoDemo.PointManagement.Admin.Platform.yaml
+    urls-primary-name: App (B2C)   # 기본 선택 스펙
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+  # api-docs는 활성화 상태 유지 (비활성 시 Swagger UI도 같이 꺼짐)
+  # /v3/api-docs 엔드포인트는 존재하지만 UI는 위 urls 설정을 우선 사용
