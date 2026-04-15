@@ -41,7 +41,7 @@ dependencies {
 // ──────────────────────────────────────────
 // openapi-generator 공통 설정 헬퍼
 // ──────────────────────────────────────────
-val specDir = "$rootDir/../contract/tsp-output/@typespec/openapi3"
+val specDir = "$rootDir/contract/tsp-output/@typespec/openapi3"
 val generatedDir = "${layout.buildDirectory.get()}/generated"
 val commonConfigOptions = mapOf(
     "interfaceOnly"        to "true",
